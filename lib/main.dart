@@ -23,10 +23,22 @@ class ExpensesApp extends StatelessWidget {
             tertiary: Colors.purple[50],
           ),
           textTheme: tema.textTheme.copyWith(
-            titleLarge: const TextStyle(
+            titleLarge: TextStyle(
               fontFamily: 'Quicksand',
-              fontSize: 20,
+              fontSize: 20 * MediaQuery.textScaleFactorOf(context),
               fontWeight: FontWeight.bold,
+            ),
+            titleSmall: const TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            titleMedium: const TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
             labelLarge: TextStyle(
               fontFamily: 'Quicksand-Bold',
@@ -85,22 +97,33 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Despesas Pessoais'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => _openTransactionFormModal(context),
-          )
-        ],
+    final appBar = AppBar(
+      title: Text(
+        'Despesas Pessoais',
       ),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () => _openTransactionFormModal(context),
+        )
+      ],
+    );
+    final availableHeight = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        AppBar().preferredSize.height;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction),
+            SizedBox(
+                height: availableHeight * 0.3,
+                child: Chart(_recentTransactions)),
+            SizedBox(
+                height: availableHeight * 0.6,
+                child: TransactionList(_transactions, _removeTransaction)),
           ],
         ),
       ),
