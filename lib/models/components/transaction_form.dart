@@ -64,7 +64,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 onSubmitted: (_) => _submitForm(),
-                decoration: const InputDecoration(labelText: 'Valor (R\$)'),
+                decoration: const InputDecoration(labelText: 'Valor (\$)'),
               ),
               Container(
                 height: 70,
