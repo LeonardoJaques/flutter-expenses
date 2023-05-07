@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import './models/components/transaction_form.dart';
 import './models/components/transaction_list.dart';
 
-main() => runApp(ExpensesApp());
+main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
   const ExpensesApp({super.key});
@@ -19,7 +19,7 @@ class ExpensesApp extends StatelessWidget {
     final ThemeData tema = ThemeData();
 
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
       theme: tema.copyWith(
           colorScheme: tema.colorScheme.copyWith(
             primary: Colors.purple,
@@ -177,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         : Scaffold(
             appBar: PreferredSize(
-                preferredSize: Size.fromHeight(60), child: appBar),
+                preferredSize: const Size.fromHeight(60), child: appBar),
             body: bodyPage,
             floatingActionButton: Platform.isIOS
                 ? Container()
